@@ -15,23 +15,17 @@ public interface IRequestProvider {
 	/**
 	 * Return the total number of request slots available from this provider.
 	 */
-	int getNumberOfRequests();
+	int getRequestsCount();
 
 	/**
-	 * Return the stack requested in slot i, provided that this request is not
-	 * in process of being provided by a robot.
+	 * Return the stack requested in the slot. Returns null if there's no
+	 * request in that slot/
 	 */
-	StackRequest getAvailableRequest(int i);
+	ItemStack getRequest(int slot);
 
 	/**
-	 * Allocate the request at slot i to the robot given in parameter, and
-	 * return true if the allocation is successful.
-	 */
-	boolean takeRequest(int i, EntityRobotBase robot);
-
-	/**
-	 * Provide a stack to fulfill request at index i. Return the stack minus
+	 * Provide a stack to fulfill request in the slot. Return the stack minus
 	 * items that have been taken.
 	 */
-	ItemStack provideItemsForRequest(int i, ItemStack stack);
+	ItemStack offerItem(int slot, ItemStack stack);
 }
